@@ -36,24 +36,79 @@ Markdown到Word文档的转换工具MCP服务器实现。主要特点：
 - 提供自定义样式和格式控制
 - 能够处理中文文档和特殊格式要求
 
+### 4. threat-intel-mcp
+
+威胁情报集成MCP服务器实现。整合多个安全情报平台：
+
+- **VirusTotal**: URL、IP、Domain、文件Hash检测
+- **AbuseIPDB**: IP地址声誉检查和滥用报告
+- **Shodan**: 互联网设备和服务搜索
+- 提供8个专业工具，覆盖完整威胁情报工作流
+
+### 5. hash-analyzer-mcp
+
+Hash分析和加密工具MCP服务器实现。提供全面的Hash处理能力：
+
+- 自动识别Hash类型（MD5、SHA系列、bcrypt等）
+- 生成多种加密算法的Hash值
+- HMAC生成和验证
+- Hash对比和验证功能
+- Hash熵分析和可疑模式检测
+
+### 6. ssl-analyzer-mcp
+
+SSL/TLS证书分析MCP服务器实现。专业的SSL/TLS安全检测：
+
+- SSL/TLS证书详细信息获取
+- TLS版本支持测试（检测过时协议）
+- 加密套件和协议配置检查
+- HTTP安全头检测和评分
+- 证书链验证
+
+### 7. cve-lookup-mcp
+
+CVE漏洞查询MCP服务器实现。集成NVD国家漏洞数据库：
+
+- CVE漏洞搜索和过滤（关键词、严重程度、时间范围）
+- 详细CVE信息查询（CVSS评分、影响范围）
+- 产品漏洞查询（按厂商和产品）
+- 漏洞统计分析和趋势
+- 已知漏洞利用检测（Exploit-DB、Metasploit）
+
 ## 项目结构
 
 ```plaintext
 .
-├── implementations/           # 自主开发的 MCP Server 实现
-│   ├── sqlmap-mcp/          # SQL注入测试工具MCP实现
-│   │   ├── src/             # 源代码目录
-│   │   ├── build/          # 编译输出目录
-│   │   └── README.md       # 实现文档
-│   ├── quake-server/        # Quake搜索引擎MCP实现
-│   │   ├── src/             # 源代码目录
-│   │   ├── build/          # 编译输出目录
-│   │   └── README.md       # 实现文档
-│   └── doc-processor/       # 文档处理工具MCP实现
-│       ├── src/             # 源代码目录
-│       ├── build/          # 编译输出目录
-│       └── README.md       # 实现文档
-└── README.md               # 项目主文档
+├── implementations/              # 自主开发的 MCP Server 实现
+│   ├── sqlmap-mcp/              # SQL注入测试工具MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   ├── quake-server/            # Quake搜索引擎MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   ├── doc-processor/           # 文档处理工具MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   ├── threat-intel-mcp/        # 威胁情报集成MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   ├── hash-analyzer-mcp/       # Hash分析工具MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   ├── ssl-analyzer-mcp/        # SSL/TLS分析MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   └── cve-lookup-mcp/          # CVE漏洞查询MCP实现
+│       ├── src/                 # 源代码目录
+│       ├── build/               # 编译输出目录
+│       └── README.md            # 实现文档
+└── README.md                    # 项目主文档
 ```
 
 ## 开发
@@ -91,26 +146,49 @@ Windows: `%APPDATA%/Claude/claude_desktop_config.json`
     },
     "quake-server": {
       "command": "node",
-      "args": [
-        "/path/to/quake-server/build/index.js"
-      ],
+      "args": ["/path/to/quake-server/build/index.js"],
       "env": {
         "QUAKE_API_KEY": "xxxxxx-xxxx-xxxx-xxxx-xxxxxxx"
-      },
-      "disabled": false,
-      "alwaysAllow": []
+      }
     },
     "doc-processor": {
       "command": "node",
-      "args": [
-        "/path/to/doc-processor/build/index.js"
-      ],
-      "disabled": false,
-      "alwaysAllow": []
+      "args": ["/path/to/doc-processor/build/index.js"]
+    },
+    "threat-intel": {
+      "command": "node",
+      "args": ["/path/to/threat-intel-mcp/build/index.js"],
+      "env": {
+        "VIRUSTOTAL_API_KEY": "your-virustotal-api-key",
+        "ABUSEIPDB_API_KEY": "your-abuseipdb-api-key",
+        "SHODAN_API_KEY": "your-shodan-api-key"
+      }
+    },
+    "hash-analyzer": {
+      "command": "node",
+      "args": ["/path/to/hash-analyzer-mcp/build/index.js"]
+    },
+    "ssl-analyzer": {
+      "command": "node",
+      "args": ["/path/to/ssl-analyzer-mcp/build/index.js"]
+    },
+    "cve-lookup": {
+      "command": "node",
+      "args": ["/path/to/cve-lookup-mcp/build/index.js"],
+      "env": {
+        "NVD_API_KEY": "your-nvd-api-key"
+      }
     }
   }
 }
 ```
+
+### API密钥获取
+
+- **VirusTotal**: https://www.virustotal.com/gui/join-us
+- **AbuseIPDB**: https://www.abuseipdb.com/register
+- **Shodan**: https://account.shodan.io/register
+- **NVD (可选)**: https://nvd.nist.gov/developers/request-an-api-key
 
 ## 调试
 

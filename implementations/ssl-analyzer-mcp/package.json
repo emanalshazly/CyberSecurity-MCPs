@@ -1,0 +1,23 @@
+{
+  "name": "ssl-analyzer-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for SSL/TLS Certificate Analysis and Security Testing",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector node build/index.js"
+  },
+  "keywords": ["mcp", "security", "ssl", "tls", "certificate", "https"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4",
+    "axios": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}

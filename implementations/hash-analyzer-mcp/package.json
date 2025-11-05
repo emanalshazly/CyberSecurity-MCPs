@@ -1,0 +1,22 @@
+{
+  "name": "hash-analyzer-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Hash Analysis and Identification",
+  "main": "build/index.js",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "inspector": "npx @modelcontextprotocol/inspector node build/index.js"
+  },
+  "keywords": ["mcp", "security", "hash", "crypto", "md5", "sha"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
