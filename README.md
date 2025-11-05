@@ -75,6 +75,27 @@ CVE漏洞查询MCP服务器实现。集成NVD国家漏洞数据库：
 - 漏洞统计分析和趋势
 - 已知漏洞利用检测（Exploit-DB、Metasploit）
 
+### 8. encryption-mcp
+
+全面的加密解密MCP服务器实现。支持17种加密和编码方式：
+
+- **现代加密**: AES-256, RSA (1024-4096位), ChaCha20
+- **经典密码**: Caesar, ROT13, Vigenere, Atbash, XOR
+- **编码方式**: Base64, Hexadecimal编码/解码
+- RSA密钥对生成（支持多种密钥长度）
+- 支持多种AES模式（CBC, GCM, CTR）
+
+### 9. cipher-identifier-mcp
+
+智能密码识别和自动解密MCP服务器实现。AI驱动的密码分析工具：
+
+- **智能识别**: 自动检测Base64、Hex、Binary、Caesar、ROT13、Morse等
+- **自动解密**: 一键自动尝试解密并返回最可能的结果
+- **暴力破解**: Caesar密码全部25种可能自动测试
+- **频率分析**: 字母频率统计，识别替换密码
+- **置信度评分**: 为每个可能的解密结果提供可信度分数
+- **多层检测**: 支持检测多层嵌套加密
+
 ## 项目结构
 
 ```plaintext
@@ -104,7 +125,15 @@ CVE漏洞查询MCP服务器实现。集成NVD国家漏洞数据库：
 │   │   ├── src/                 # 源代码目录
 │   │   ├── build/               # 编译输出目录
 │   │   └── README.md            # 实现文档
-│   └── cve-lookup-mcp/          # CVE漏洞查询MCP实现
+│   ├── cve-lookup-mcp/          # CVE漏洞查询MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   ├── encryption-mcp/          # 加密解密工具MCP实现
+│   │   ├── src/                 # 源代码目录
+│   │   ├── build/               # 编译输出目录
+│   │   └── README.md            # 实现文档
+│   └── cipher-identifier-mcp/   # 智能密码识别MCP实现
 │       ├── src/                 # 源代码目录
 │       ├── build/               # 编译输出目录
 │       └── README.md            # 实现文档
@@ -178,6 +207,14 @@ Windows: `%APPDATA%/Claude/claude_desktop_config.json`
       "env": {
         "NVD_API_KEY": "your-nvd-api-key"
       }
+    },
+    "encryption": {
+      "command": "node",
+      "args": ["/path/to/encryption-mcp/build/index.js"]
+    },
+    "cipher-identifier": {
+      "command": "node",
+      "args": ["/path/to/cipher-identifier-mcp/build/index.js"]
     }
   }
 }
@@ -189,6 +226,27 @@ Windows: `%APPDATA%/Claude/claude_desktop_config.json`
 - **AbuseIPDB**: https://www.abuseipdb.com/register
 - **Shodan**: https://account.shodan.io/register
 - **NVD (可选)**: https://nvd.nist.gov/developers/request-an-api-key
+
+## 主要特色
+
+### 🔥 智能工具
+- **cipher-identifier-mcp**: AI驱动的自动密码识别和解密
+- **threat-intel-mcp**: 整合3大威胁情报平台（VirusTotal、AbuseIPDB、Shodan）
+- **hash-analyzer-mcp**: 智能Hash类型识别和分析
+
+### 🛡️ 安全测试
+- **sqlmap-mcp**: SQL注入自动化测试
+- **ssl-analyzer-mcp**: SSL/TLS配置和证书分析
+- **cve-lookup-mcp**: 漏洞数据库查询和分析
+
+### 🔐 密码学工具
+- **encryption-mcp**: 17种加密算法（AES、RSA、ChaCha20等）
+- **hash-analyzer-mcp**: 多种Hash算法支持
+- **cipher-identifier-mcp**: 智能密码破解
+
+### 🌐 网络侦察
+- **quake-server**: 网络空间搜索引擎
+- **threat-intel-mcp**: IP/Domain/URL信誉检查
 
 ## 调试
 
